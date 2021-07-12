@@ -26,6 +26,10 @@ jobs:
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD
+    dependencies:
+      override:
+        - pip install tox tox-pyenv
+        - pyenv local 2.7.12 3.4.3 3.5.2 3.6.3
     steps:
       - checkout
       - run: sudo chown -R circleci:circleci /usr/local/bin
@@ -34,11 +38,6 @@ jobs:
           name: Installing virutalenv and tox ⚡️⚡️⚡️
           command: |
             sudo pip install virtualenv
-            sudo pip install tox
-      - run:
-          name: Uploading data to MongoDB
-          command: |
-            mongoimport --db database --collection restaurant --drop --file ~/data/restaurant.json
       - run:
           name: Workspace getting ready... 🎨
           command: |
