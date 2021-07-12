@@ -36,16 +36,17 @@ jobs:
             sudo pip install virtualenv
             sudo pip install tox
       - run:
-          name: Workspace will be ready in 3,2,1... 🎨
+          name: Workspace getting ready... 🎨
           command: |
             virtualenv -p python3 .venv
             source .venv/bin/activate
             pip install -r requirements.txt
             mkdir test-results
             export MONGO_URI=mongodb://localhost:27017/database
+            python app.py
       - run:
           name: Launch tests 🔥🔥
           command: |
-            python -m unittest
+            docker run -it -v $(pwd):/tmp/app -w /tmp/app --rm painless/tox /bin/bash tox
       - store_test_results: # Upload test results for display in Test Summary
           path: test-results
