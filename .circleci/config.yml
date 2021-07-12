@@ -31,10 +31,12 @@ jobs:
       - run: sudo chown -R circleci:circleci /usr/local/bin
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
       - run:
+          name: Installing virutalenv and tox ⚡️⚡️⚡️
           command: |
             sudo pip install virtualenv
             sudo pip install tox
       - run:
+          name: Workspace will be ready in 3,2,1... 🎨
           command: |
             virtualenv -p python3 .venv
             source .venv/bin/activate
@@ -42,7 +44,8 @@ jobs:
             mkdir test-results
             export MONGO_URI=mongodb://localhost:27017/database
       - run:
+          name: Launch tests 🔥🔥
           command: |
             python -m unittest
-      - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+      - store_test_results: # Upload test results for display in Test Summary
           path: test-results
