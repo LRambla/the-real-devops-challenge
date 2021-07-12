@@ -18,10 +18,6 @@ jobs:
         environment:
           PIPENV_VENV_IN_PROJECT: true
           DATABASE_URL: mongodb://localhost:27017/database
-      - image: python:3.5.2 
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  
       - image: mongo:4.4.6
         auth:
           username: mydockerhub-user
@@ -45,6 +41,10 @@ jobs:
       - run:
           name: Launch tests 🔥🔥
           command: |
+            python3.5 -V
+            python3.4 -V
+            python2.7 -V
+            python3.6 -V
             mkdir test-results
             tox
       - store_test_results: # Upload test results for display in Test Summary
