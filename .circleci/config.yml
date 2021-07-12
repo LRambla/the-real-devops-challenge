@@ -41,10 +41,6 @@ jobs:
       - run:
           name: Launch tests 🔥🔥
           command: |
-            python3.5 -V
-            python3.4 -V
-            python2.7 -V
-            python3.6 -V
             mkdir test-results
             tox
       - store_test_results: # Upload test results for display in Test Summary
