@@ -9,7 +9,7 @@ orbs:
 
 jobs:
   build:
-    working-directory: ~/the-real-devops-challenge
+    working_directory: ~/the-real-devops-challenge
     docker:
       - image: circleci/python:3.6.4  # primary container for the build job
         auth:
