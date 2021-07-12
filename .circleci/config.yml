@@ -18,7 +18,7 @@ jobs:
         environment:
           PIPENV_VENV_IN_PROJECT: true
           DATABASE_URL: mongodb://localhost:27017/database
-      - image: circleci/python:3.5.2 
+      - image: python:3.5.2 
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  
