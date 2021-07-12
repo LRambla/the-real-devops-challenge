@@ -18,10 +18,14 @@ jobs:
         environment:
           PIPENV_VENV_IN_PROJECT: true
           DATABASE_URL: mongodb://localhost:27017/database
-      - image: mongo:4.4.6 # an example of how to specify a service container
+      - image: circleci/python:3.5.2 
         auth:
           username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+          password: $DOCKERHUB_PASSWORD  
+      - image: mongo:4.4.6
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
       - run: sudo chown -R circleci:circleci /usr/local/bin
