@@ -36,6 +36,10 @@ jobs:
             sudo pip install virtualenv
             sudo pip install tox
       - run:
+          name: Uploading data to MongoDB
+          command: |
+            mongoimport --db database --collection restaurant --drop --file ~/data/restaurant.json
+      - run:
           name: Workspace getting ready... 🎨
           command: |
             virtualenv -p python3 .venv
@@ -43,7 +47,6 @@ jobs:
             pip install -r requirements.txt
             mkdir test-results
             export MONGO_URI=mongodb://localhost:27017/database
-            python app.py
       - run:
           name: Launch tests 🔥🔥
           command: |
