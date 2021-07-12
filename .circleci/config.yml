@@ -33,19 +33,19 @@ jobs:
       - run:
           name: Installing virutalenv and tox ⚡️⚡️⚡️
           command: |
-            sudo pip install virtualenv tox tox-pyenv
-            pyenv local 2.7.12 3.4.3 3.5.2 3.6.3
+            sudo pip install virtualenv
+            sudo pip install tox
       - run:
           name: Workspace getting ready... 🎨
           command: |
             virtualenv -p python3 .venv
             source .venv/bin/activate
             pip install -r requirements.txt
-            mkdir test-results
             export MONGO_URI=mongodb://localhost:27017/database
       - run:
           name: Launch tests 🔥🔥
           command: |
-            docker run -it -v $(pwd):/tmp/app -w /tmp/app --rm painless/tox /bin/bash tox
+            mkdir test-results
+            tox
       - store_test_results: # Upload test results for display in Test Summary
           path: test-results
