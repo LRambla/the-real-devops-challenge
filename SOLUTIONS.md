@@ -1,13 +1,14 @@
 # The real DevOps challenge 
-Solution developed by Lydia Ramos 
+Solution developed by Lydia Ramos :D 
+![](assets/ready.jpg)
 
 ### Challenge 1. The API returns a list instead of an object
 
 Firstly, I've corrected the `find_restaurants` method located in mongoflask.py so it uses the correct ID:
     `query["_id"] = ObjectId(id)` to `query["_id"] = ObjectId(_id)`
 
-Secondly, I have modified the same method so it returns a json object if it finds just one result, a 204 if it doesn't find any restaurant 
-that matches the ID or a list of restaurants:
+Secondly, I have modified this method so it returns a json object if it finds just one result, a 204 if it doesn't find any restaurant 
+that matches the ID or a list of restaurants if we don't receive any ID:
 
     def find_restaurants(mongo, _id=None):
      query = {}
@@ -23,7 +24,18 @@ that matches the ID or a list of restaurants:
 
 ### Challenge 2. Test the application in any cicd system
 
+In this case, I've decided to use (and learn, because I've never ever used it) CircleCI!
 
+CircleCI is simpler than I thought it'd be. You just need to create (or link) an account in their website, 
+link your GitHub project and init a config.yml file with an empty or default circleCI template. 
+Soooo... Let's analyze our prerequisites! For this challenge we'll need:
+- A running MongoDB (I've used mongo:4.4.6)
+- A primary container for the build job (I've used circleci/python:3.6.4, the one circleCI gives you in their default python config template). 
+- Well defined steps! 
+
+![](https://media.giphy.com/media/l0amJzVHIAfl7jMDos/source.gif)
+
+You could check the config file in .circleci/config.yml
 
 ### Challenge 3. Dockerize the APP
 
