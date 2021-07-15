@@ -22,21 +22,19 @@ jobs:
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD
+    dependencies:
+      override:
+        - sudo pip install tox tox-pyenv
+        - sudo pyenv local 2.7.12 3.4.0 3.5.0 3.6.4
     steps:
       - checkout
       - run: sudo chown -R circleci:circleci /usr/local/bin
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
       - run:
-          name: Installing tox and requirements ⚡️⚡️⚡️
+          name: Installing requirements ⚡️⚡️⚡️
           command: |
             sudo apt-get update
-            pip install tox
             pip3 install -r requirements.txt
-      - run:
-          name: Pyversions
-          command: |
-            python --version
-            python3 --version
       - run:
           name: Launch tests 🔥🔥
           command: |
