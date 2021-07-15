@@ -42,6 +42,9 @@ It's been a while since I last developed a Dockerfile but it's never too late to
 
 I've used a python:3.6.4 as base image to solve this challenge and I've followed [Docker Docs](https://docs.docker.com/language/python/build-images/)
  steps for a Python app :D 
+ 
+To build the image you just need to type the following on your terminal :
+`docker build --tag <image-name> <dockerfile-location>`
 
 ### Challenge 4. Dockerize the database
 
