@@ -29,10 +29,10 @@ jobs:
       - run:
           name: Installing tox ⚡️⚡️⚡️
           command: |
-            pip install tox pytest-pylint==0.16.1
+            sudo apt-get update
+            pip install tox
             pip3 install -r requirements.txt
       - run:
           name: Launch tests 🔥🔥
           command: |
-            pytest --pylint --pylint-error-types=EF
             tox
