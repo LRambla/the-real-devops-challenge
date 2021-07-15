@@ -31,7 +31,6 @@ jobs:
           command: |
             sudo apt-get update
             sudo pip install tox
-            pip3 install -r requirements.txt
       - run:
           name: Launch tests 🔥🔥
           command: |

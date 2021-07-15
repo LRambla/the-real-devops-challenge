@@ -1,6 +1,5 @@
 # The real DevOps challenge 
 Solution developed by Lydia Ramos :D 
-![](assets/ready.jpg)
 
 ### Challenge 1. The API returns a list instead of an object
 
@@ -33,9 +32,9 @@ Soooo... Let's analyze our prerequisites! For this challenge we'll need:
 - A primary container for the build job (I've used circleci/python:3.6.4, the one circleCI gives you in their default python config template). 
 - Well defined steps! 
 
-![](https://media.giphy.com/media/l0amJzVHIAfl7jMDos/source.gif)
-
 You could check the config file in .circleci/config.yml
+
+NOTES: I've removed python versions 2.7,3.4 and 3.5 from tox.ini so it didn't took me such a long time to do the challenges.
 
 ### Challenge 3. Dockerize the APP
 
