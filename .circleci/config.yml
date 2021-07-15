@@ -7,44 +7,37 @@ orbs:
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/python
   python: circleci/python@1.2
 
-  ci: &ci
+jobs:
+  build:
     working_directory: ~/the-real-devops-challenge
+    docker:
+      - image: circleci/python:3.6.4  # primary container for the build job
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+        environment:
+          PIPENV_VENV_IN_PROJECT: true
+          DATABASE_URL: mongodb://localhost:27017/database
+      - image: mongo:4.4.6
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
       - run: sudo chown -R circleci:circleci /usr/local/bin
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
       - run:
-          name: Installing tox and requirements⚡️⚡️⚡️
+          name: Installing tox and requirements ⚡️⚡️⚡️
           command: |
             sudo apt-get update
             pip install tox
             pip3 install -r requirements.txt
       - run:
+          name: Pyversions
+          command: |
+            python --version
+            python3 --version
+      - run:
           name: Launch tests 🔥🔥
           command: |
             tox
-  jobs:
-    py27:
-      <<: *ci
-      docker:
-          - image: circleci/python:2.7
-    py34:
-      <<: *ci
-      docker:
-          - image: circleci/python:3.4
-    py35:
-      <<: *ci
-      docker:
-          - image: circleci/python:3.5
-    py36:
-      <<: *ci
-      docker:
-          - image: circleci/python:3.6
-  workflows:
-    version: 2
-    test:
-      jobs:
-        - py27
-        - py34
-        - py35
-        - py36
