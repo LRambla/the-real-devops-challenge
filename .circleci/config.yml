@@ -7,14 +7,8 @@ orbs:
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/python
   python: circleci/python@1.2
 
-jobs:
-  build:
+  ci: &ci
     working_directory: ~/the-real-devops-challenge
-    docker:
-      - image: circleci/python:3.6.4  # primary container for the build job
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
       - run: sudo chown -R circleci:circleci /usr/local/bin
@@ -29,3 +23,21 @@ jobs:
           name: Launch tests 🔥🔥
           command: |
             tox
+
+  jobs:
+    py27:
+      <<: *ci
+      docker:
+          - image: circleci/python:2.7
+    py34:
+      <<: *ci
+      docker:
+          - image: circleci/python:3.4
+    py35:
+      <<: *ci
+      docker:
+          - image: circleci/python:3.5
+    py36:
+      <<: *ci
+      docker:
+          - image: circleci/python:3.6
