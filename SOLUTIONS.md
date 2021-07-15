@@ -38,6 +38,11 @@ NOTES: I've removed python versions 2.7,3.4 and 3.5 from tox.ini so it didn't to
 
 ### Challenge 3. Dockerize the APP
 
+It's been a while since I last developed a Dockerfile but it's never too late to remember and refresh some key concepts!
+
+I've used a python:3.6.4 as base image to solve this challenge and I've followed [Docker Docs](https://docs.docker.com/language/python/build-images/)
+ steps for a Python app :D 
+
 ### Challenge 4. Dockerize the database
 
 ### Challenge 5. Docker Compose it
