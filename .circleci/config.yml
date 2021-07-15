@@ -27,7 +27,7 @@ jobs:
       - run: sudo chown -R circleci:circleci /usr/local/bin
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
       - run:
-          name: Installing tox ⚡️⚡️⚡️
+          name: Installing tox and requirements⚡️⚡️⚡️
           command: |
             sudo apt-get update
             pip install tox
@@ -35,4 +35,4 @@ jobs:
       - run:
           name: Launch tests 🔥🔥
           command: |
-            docker run -it -v $(pwd):/tmp/app -w /tmp/app --rm painless/tox /bin/bash tox
+            tox
