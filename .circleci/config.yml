@@ -35,4 +35,4 @@ jobs:
           name: Launch tests 🔥🔥
           command: |
             pytest --pylint --pylint-error-types=EF
-            docker run -it -v $(pwd):/tmp/app -w /tmp/app --rm painless/tox /bin/bash tox
+            tox
