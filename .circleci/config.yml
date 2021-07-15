@@ -12,16 +12,16 @@ jobs:
     working_directory: ~/the-real-devops-challenge
     docker:
       - image: circleci/python:3.6.4  # primary container for the build job
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-        environment:
-          PIPENV_VENV_IN_PROJECT: true
-          DATABASE_URL: mongodb://localhost:27017/database
-      - image: mongo:4.4.6
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD
+#        auth:
+#          username: mydockerhub-user
+#          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+#        environment:
+#          PIPENV_VENV_IN_PROJECT: true
+#          DATABASE_URL: mongodb://localhost:27017/database
+#      - image: mongo:4.4.6
+#        auth:
+#          username: mydockerhub-user
+#          password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
       - run: sudo chown -R circleci:circleci /usr/local/bin
@@ -29,8 +29,10 @@ jobs:
       - run:
           name: Installing tox ⚡️⚡️⚡️
           command: |
-            sudo pip install tox
+            pip install tox pytest-pylint==0.16.1
+            pip3 install -r requirements.txt
       - run:
           name: Launch tests 🔥🔥
           command: |
-            tox
+            pytest --pylint --pylint-error-types=EF
+            docker run -it -v $(pwd):/tmp/app -w /tmp/app --rm painless/tox /bin/bash tox
