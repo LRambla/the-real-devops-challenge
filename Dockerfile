@@ -1,8 +1,5 @@
 FROM python:3.6.4
 
-# Environment variables
-ENV MONGO_URI="mongodb://127.0.0.1:27017/database"
-
 # Add source code and assign working directory
 ADD . /app
 WORKDIR /app

@@ -10,3 +10,5 @@ COPY /data/restaurant.json /docker-entrypoint-initdb.d/restaurant.json
 
 # Expose DB port
 EXPOSE 27017
+
+VOLUME /data/db
