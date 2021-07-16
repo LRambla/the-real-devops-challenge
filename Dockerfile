@@ -1,14 +1,15 @@
 FROM python:3.6.4
 
 # Environment variables
-ENV MONGO_URI=mongodb://127.0.0.1:27017/database
+ENV MONGO_URI="mongodb://127.0.0.1:27017/database"
+
+# Add source code and assign working directory
+ADD . /app
+WORKDIR /app
 
 # Installing python libs and dependencies
 COPY requirements.txt .
 RUN pip3 install -r requirements.txt
-
-# Add source code to our image
-COPY . .
 
 # Expose our image on port 8080
 EXPOSE 8080
