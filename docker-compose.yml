@@ -1,0 +1,29 @@
+#You must use version 3 if your Docker Engine's version is higher than 1.13
+# version: '3'
+version: '2'
+services:
+  pyapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pyapp
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongodb
+    networks:
+      - app
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/database
+  mongodb:
+    build:
+      context: ./mongo/
+      dockerfile: Dockerfile
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    networks:
+      - app
+networks:
+  app:
+    driver: bridge

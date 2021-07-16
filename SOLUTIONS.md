@@ -43,7 +43,7 @@ It's been a while since I last developed a Dockerfile but it's never too late to
 I've used a python:3.6.4 as base image to solve this challenge and I've followed [Docker Docs](https://docs.docker.com/language/python/build-images/)
  steps for a Python app :D 
  
-To build the image you just need to type the following on your terminal :
+To build the image you just need to type the following on your terminal:
 `docker build --tag <image-name> <dockerfile-location>`
 
 ### Challenge 4. Dockerize the database
@@ -54,4 +54,12 @@ Inside `init.sh`, I've imported `restaurant.json` inside `/docker-entrypoint-ini
 
 ### Challenge 5. Docker Compose it
 
+So... Now you could run our faboulous dockerized python/mongo app! :D
+
+For this challenge, I've used docker-compose version 2 in `docker-compose.yml` because I was using docker engine v.1.12.6 
+(you could check docker-compose versions [here](https://docs.docker.com/compose/compose-file/compose-file-v3/)).
+
+Furthermore, I've setted `MONGO_URI` inside `docker-compose.yml` instead of pyapp Dockerfile (`./Dockerfile`) so 
+I could linked both services inside docker-compose file. 
+    
 ### Final Challenge. Deploy it on kubernetes
