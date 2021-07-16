@@ -48,6 +48,10 @@ To build the image you just need to type the following on your terminal :
 
 ### Challenge 4. Dockerize the database
 
+I've added a new folder `/mongo`, where I've created a Dockerfile and a init.sh file. I've also moved `/data` folder inside it so I could copy `restaurant.json` file into our dockerized MongoDB.
+
+Inside `init.sh`, I've imported `restaurant.json` inside `/docker-entrypoint-initdb.d/` because [this ensures that the initialization scripts will only run once](https://github.com/docker-library/mongo/pull/145)
+
 ### Challenge 5. Docker Compose it
 
 ### Final Challenge. Deploy it on kubernetes
